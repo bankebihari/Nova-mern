@@ -1,4 +1,7 @@
-// home function
+const User =require("../models/user-model");
+
+
+// home function 
 const  home = async (req,res) => {
 try {
 res
@@ -16,10 +19,19 @@ res
 //register logic
 const register= async(req,res) => {
 	try {
-		res.status(200).send("welcome to registeration ,it's lunnch time ")
+		const { username,email , phone , password} = req.body; 
+        
+const userExist = User.findOne({email : email});
+ if(userExist){
+	return res.status(400).json({msg: "email already exists" });
+
+ }
+
+ await User.create({username , email, phone, password});
+		res.status(200).json({data});
 	
 	} catch (error) {
-		res.status(400).send({msg : " page not found"})
+		res.status(500).json("internal server error");
 	}	
 };
 
