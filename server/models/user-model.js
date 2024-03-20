@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
 // 	phone : Number,
  username:{
 	type : String,
-	require : true,
+	require : true,// can'y make empty
  },
  email : {
 	type : String,

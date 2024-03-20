@@ -1,14 +1,15 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require("express");
 const mongoose= require('mongoose');
 const nodemon= require('nodemon');
 const router=require('./router/auth-router');
 
 const connectDb = require("./utils/db")
-
+//creating app constant and passing    the  rest api
 const app=express();
 
-app.use(express.json()); // middleware
+//middleware
+app.use(express.json()); // middleware than now we can use json
 app.use("/api/auth",router) 
 
 // app.get('/' , (req,res)=>{
@@ -21,13 +22,14 @@ app.use("/api/auth",router)
 // });
 
 
-const PORT =process.env.PORT|| 3000
+const PORT = 5000;
 
-connectDb().then(() => {
+//connectDb().then(() => {
 
+// start the server
+connectDb();
+app.listen(PORT, () =>{
+	console.log(`server is running at  port ${PORT}`);
 
-app.listen(PORT) , () =>{
-	console.log(`server is running on port no ${PORT}`);
-
-};
-});
+})
+//});

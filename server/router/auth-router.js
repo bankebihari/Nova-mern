@@ -19,12 +19,13 @@ const authcontrollers = require("../controllers/auth-controller");
 // 	.send("welcome sir")
 // });
 
-router.route('/').get(authcontrollers.home);
+
 
 // router.route('/register').get((req,res) =>{
 // 	res.status(200).send("welcome to registeration ,it's lunnch time ")
 // });
 
-router.route('/register').get(authcontrollers.register);
+router.route('/').get(authcontrollers.home);
+router.route('/register').post(authcontrollers.register);
 
 module.exports = router;
